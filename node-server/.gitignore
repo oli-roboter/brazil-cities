@@ -1,2 +1,4 @@
 logfile
 node_modules/
+*.csv
+*.sqlite
