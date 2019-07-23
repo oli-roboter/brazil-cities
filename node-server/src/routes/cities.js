@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
-  console.log("entrou o request");
+  // console.log("entrou o request");
   const { dbPromise } = req;
   const db = await dbPromise;
-  console.log(db);
+  // console.log(db);
   try {
     const [test] = await Promise.all([db.all(`SELECT * FROM cities`)]);
     res.json({

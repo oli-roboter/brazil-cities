@@ -22,8 +22,8 @@ export async function init(dbPromise) {
     } else {
       winston.warn("Table already populated!");
     }
-  } catch (error) {
-    winston.error("init process error:", error);
+  } catch (err) {
+    winston.error("init process error:", err);
   }
 }
 
@@ -71,7 +71,7 @@ async function insertRecords(db) {
         winston.info(i, "rows inserted.");
       }
     }
-    winston.info(`insert rows finished, ${i} rows inserted.`);
+    winston.info(`insert rows finished.`);
   } catch (err) {
     throw { location: "insertRecords", err };
   }
