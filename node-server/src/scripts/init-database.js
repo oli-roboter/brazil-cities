@@ -5,6 +5,7 @@ import {
   getTableFields
 } from "../database/initial-data-queries";
 const cities = require("../database/brazil-cities.json");
+const rows = cities.length;
 /*
  better to have const at top? const db = await dbPromise;
  or pass it into functions?
@@ -24,6 +25,7 @@ export async function init(dbPromise) {
     }
   } catch (err) {
     winston.error("init process error:", err);
+    throw err;
   }
 }
 
@@ -63,15 +65,15 @@ async function insertRecords(db) {
   const headerKeys = header.headerKeys;
   // console.log("insertStatement:", insert);
   try {
-    for (let i = 0; i <= 3; i++) {
+    for (let i = 0; i < rows; i++) {
       const insertArr = headerKeys.map(k => cities[i][`${k}`]);
       // console.log("getting ready to roll", insertArr);
       await db.run(insert, insertArr);
-      if (i % 1000 === 0) {
-        winston.info(i, "rows inserted.");
+      if (i !== 0 && i % 1000 === 0) {
+        winston.info(`${i} rows inserted`);
       }
     }
-    winston.info(`insert rows finished.`);
+    winston.info(`Finished, ${rows} rows inserted`);
   } catch (err) {
     throw { location: "insertRecords", err };
   }

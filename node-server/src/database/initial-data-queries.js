@@ -10,7 +10,5 @@ export function insertInitialData(tableHeaders) {
 }
 
 export function getTableFields(tableHeaders) {
-  const headerKeyValuePairs = Object.entries(tableHeaders);
-  // console.log(headerKeyValuePairs);
-  return headerKeyValuePairs;
+  return Object.entries(tableHeaders);
 }
