@@ -33,7 +33,6 @@ async function checkRecordsExists(db) {
   winston.info("Checking if there are records in table...");
   try {
     const hits = await Promise.all([db.all(`SELECT * FROM cities`)]);
-    // winston.debug("hits", hits);
     return hits[0].length > 0 ? true : false;
   } catch (err) {
     throw { location: "checkRecordsExists", err };
@@ -44,7 +43,6 @@ async function createDB(db) {
   winston.info("Creating database table.");
   try {
     const fields = getTableFields(tableHeaders);
-    // winston.debug(fields);
     const sqlFields = fields.map(kv => `${kv[0]} ${kv[1]}`).join();
     const sql = `CREATE TABLE cities (id INTEGER PRIMARY KEY AUTOINCREMENT, ${sqlFields})`;
     await db.run(sql);
@@ -58,16 +56,13 @@ async function createDB(db) {
 async function insertRecords(db) {
   winston.info("Inserting data into table.");
   const header = insertInitialData(tableHeaders);
-  // console.log(header);
   const insertStr = header.headerStr;
   const valuesStr = header.valueStr;
   const insert = `INSERT INTO cities (${insertStr}) VALUES (${valuesStr})`;
   const headerKeys = header.headerKeys;
-  // console.log("insertStatement:", insert);
   try {
     for (let i = 0; i < rows; i++) {
       const insertArr = headerKeys.map(k => cities[i][`${k}`]);
-      // console.log("getting ready to roll", insertArr);
       await db.run(insert, insertArr);
       if (i !== 0 && i % 1000 === 0) {
         winston.info(`${i} rows inserted`);
