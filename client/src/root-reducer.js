@@ -4,7 +4,6 @@ import tableStore from "./features/tables/redux-tools/table-reducer";
 
 const allReducers = combineReducers({
   tableStore
-  // graphStore
 });
 
 export default allReducers;
