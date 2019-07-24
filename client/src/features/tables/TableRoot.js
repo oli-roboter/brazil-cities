@@ -1,29 +1,40 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+// import Table from "@material-ui/core/Table";
+// import TableBody from "@material-ui/core/TableBody";
+// import TableCell from "@material-ui/core/TableCell";
+// import TableRow from "@material-ui/core/TableRow";
+// import Paper from "@material-ui/core/Paper";
+import { sortFilterState } from "../tables/redux-tools/table-actions";
 // import CustomTableHead from "./TableHead";
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    gotData: state.tableStore.gotData,
+    pageData: state.tableStore.pageData
+  };
 };
 
 class TableRoot extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.sortFilterState("CITY", "MG");
+  }
 
   render() {
-    const {} = this.props;
+    const { gotData, pageData } = this.props;
+
     return (
       <div style={{ margin: 15 }}>
         <h3>Worker's Table</h3>
-
-        <Paper>
+        {gotData ? (
+          <pre>{JSON.stringify(pageData, null, 2)}</pre>
+        ) : (
+          <div>No Data</div>
+        )}
+        {/* <Paper>
           <Table>
-            {/* <CustomTableHead /> */}
+             <CustomTableHead /> 
             <TableBody>
               <Fragment>
                 <TableRow key={1}>
@@ -34,14 +45,19 @@ class TableRoot extends Component {
               </Fragment>
             </TableBody>
           </Table>
-        </Paper>
+        </Paper> */}
       </div>
     );
   }
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators(
+    {
+      sortFilterState
+    },
+    dispatch
+  );
 }
 
 export default connect(
