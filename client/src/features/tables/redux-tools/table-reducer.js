@@ -1,14 +1,14 @@
 import { TABLE_ACTION_TYPES } from "./table-actions";
 
 const defaultState = {
-  // pageSize: 10,
-  // totalRows: 0,
+  pageSize: 10,
+  totalRows: 0,
   gotData: false,
-  // currentPage: 0,
-  pageData: []
-  // orderBy: null,
-  // order: null,
-  // filterDisplay: ""
+  currentPage: 0,
+  pageData: [],
+  orderBy: null,
+  sortOrder: null,
+  filterDisplay: ""
 };
 
 export default function tableReducer(state = defaultState, action) {
@@ -20,16 +20,15 @@ export default function tableReducer(state = defaultState, action) {
       };
 
     case TABLE_ACTION_TYPES.GOT_ALL:
-      console.log("reducer", action.payload);
       return {
         ...state,
         gotData: true,
-        pageData: action.payload.data
-        // orderBy: action.payload.orderBy,
-        // order: action.payload.order,
-        // totalRows: action.payload.totalRows,
-        // filterDisplay: action.payload.str,
-        // currentPage: action.payload.currentPage
+        pageData: action.payload.data,
+        orderBy: action.payload.orderBy,
+        sort: action.payload.sort,
+        totalRows: action.payload.totalRows,
+        filterDisplay: action.payload.str,
+        currentPage: action.payload.currentPage
       };
 
     // case TABLE_ACTION_TYPES.SET_PAGE:

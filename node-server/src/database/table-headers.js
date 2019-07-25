@@ -14,13 +14,13 @@ export const tableHeaders = {
   IBGE_1: "integer",
   IBGE_1_4: "integer",
   IBGE_5_9: "integer",
-  IBGE_10_1: "integer",
+  IBGE_10_14: "integer",
   IBGE_15_59: "integer",
   IBGE_60_PLUS: "integer",
   IBGE_PLANTED_AREA: "real",
   IBGE_CROP_PRODUCTION_$: "real",
-  IDHM_Ranking: "real",
-  IDHMHDI: "real",
+  IDHM_Ranking_2010: "integer",
+  IDHM: "real",
   IDHM_Renda: "real",
   IDHM_Longevidade: "real",
   IDHM_Educacao: "real",
@@ -93,3 +93,5 @@ export const tableHeaders = {
 };
 
 export const tableHeadersArr = Object.keys(tableHeaders);
+
+

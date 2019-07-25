@@ -11,12 +11,12 @@ router.get("/:querydata", async (req, res) => {
   const db = await dbPromise;
 
   try {
-    const [test] = await Promise.all([
+    const [result] = await Promise.all([
       db.all(getTableData(filterBy, sortBy, sortOrder))
     ]);
     res.json({
       message: "success",
-      data: test
+      result
     });
   } catch (err) {
     winston.error(

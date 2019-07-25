@@ -17,7 +17,6 @@ export async function getTableData(
   });
 
   const url = `${API_ROUTES.CITIES}table/${queryData}`;
-  console.log(url);
   try {
     return await axios.get(url, {
       params: {
