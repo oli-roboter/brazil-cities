@@ -1,9 +1,10 @@
+// import
 /*
 List of all available fields in brazil-cities.json
 Commented out fields will not be imported into sqlite
 */
 
-const tableHeaders = {
+export const tableHeaders = {
   CITY: "text",
   STATE: "text",
   CAPITAL: "integer",
@@ -91,4 +92,4 @@ const tableHeaders = {
   // POST_OFFICES: "Total number of post offices"
 };
 
-export default tableHeaders;
+export const tableHeadersArr = Object.keys(tableHeaders);
