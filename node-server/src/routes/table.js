@@ -1,7 +1,7 @@
 import express from "express";
+const router = express.Router();
 import winston from "winston";
 import { getTableData } from "../database/sqlite-queries";
-const router = express.Router();
 
 router.get("/tabledata/:querydata", async (req, res) => {
   winston.info("gettin cities data");

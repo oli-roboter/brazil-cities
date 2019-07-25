@@ -6,7 +6,8 @@ import sqlite from "sqlite";
 import initLogger from "./init/init-logger";
 import { initDB } from "./init/init-database";
 import winston from "winston";
-import citiesRoutes from "./routes/cities";
+import tableRoutes from "./routes/table";
+import graphRoutes from "./routes/graph";
 
 const server = express();
 const dbSource = "./db.sqlite";
@@ -15,7 +16,7 @@ const dbPromise = sqlite.open(dbSource, { Promise });
 //initiates logger
 initLogger();
 
-//initiates sqlite DB and populates it
+//initiates sqlite DB and populates it with data from brazil-cities.json
 initDB(dbPromise)
   .then(() => winston.info("Database ready"))
   .then(() =>
@@ -35,4 +36,5 @@ server.get("/", (req, res) => {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
 });
 
-server.use("/cities", citiesRoutes);
+server.use("/table", tableRoutes);
+server.use("/graph", graphRoutes);
