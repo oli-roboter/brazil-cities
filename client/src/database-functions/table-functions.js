@@ -1,17 +1,30 @@
 import axios from "axios";
 import API_ROUTES from "../api-routes";
 
-export async function getFilteredSorted(sortColumn, filter) {
-  console.log("iniciou funcao getFilteredData");
-  const url = `${API_ROUTES.CITIES}${sortColumn}/${filter}`;
+export async function getTableData(
+  sortBy,
+  sortOrder,
+  pageNum,
+  pageSize,
+  filterBy
+) {
+  const queryData = JSON.stringify({
+    sortBy,
+    sortOrder,
+    pageNum,
+    pageSize,
+    filterBy
+  });
+
+  const url = `${API_ROUTES.CITIES}table/${queryData}`;
+  console.log(url);
   try {
     return await axios.get(url, {
       params: {
-        sortColumn,
-        filter
+        queryData
       }
     });
   } catch (err) {
-    console.error("erro front end", err);
+    console.error(`${err.message}! ${err.response.data.err}`);
   }
 }
