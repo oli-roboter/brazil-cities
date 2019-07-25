@@ -1,16 +1,21 @@
 import express from "express";
 import winston from "winston";
 import SQL from "sql-template-strings";
+import { tableHeadersArr } from "../database/table-headers";
 const router = express.Router();
 
-router.get("/:sortColumn/:state", async (req, res) => {
-  console.log('"entrou na funssao"', sortColumn, state);
-  // winston.info("entrou na funssao");
+router.get("/tabledata/:querydata", async (req, res) => {
+  winston.info("gettin cities data");
   const { dbPromise, params } = req;
-  const { sortColumn, state } = params;
-  console.log('"entrou na funssao"', sortColumn, state);
+  const queryData = JSON.parse(params.querydata);
+  const { sortBy, sortOrder, pageNum, pageSize, filterBy } = queryData;
+
+  //doesn't work in select statement. ry with append statement
+  const headerColumns = tableHeadersArr.join();
+  console.log("headerCols", headerColumns);
   const db = await dbPromise;
 
+  //other module
   try {
     const [test] = await Promise.all([
       db.all(
@@ -20,9 +25,8 @@ router.get("/:sortColumn/:state", async (req, res) => {
             STATE
           FROM cities
           WHERE
-            STATE=${state}
-          ORDER BY ${sortColumn} ASC
-        `
+            STATE=${filterBy}
+          ORDER BY ${sortBy} `.append(sortOrder)
       )
     ]);
     res.json({
@@ -31,10 +35,12 @@ router.get("/:sortColumn/:state", async (req, res) => {
     });
   } catch (err) {
     winston.error(
-      "route error; route = 'cities/:sortColumn/:state' description ->",
+      "route error; route = 'cities/tabledata/:querydata' description ->",
       err
     );
-    res.status(400).json({ error: err.message });
+    res.status(400).json({
+      err: "Server was unable to process request due to invalid query syntax"
+    }); //configurer error for client
   }
 });
 

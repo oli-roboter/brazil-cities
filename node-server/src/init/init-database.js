@@ -1,4 +1,5 @@
-import tableHeaders from "../database/table-headers";
+import fs from "fs";
+import { tableHeaders } from "../database/table-headers";
 import winston from "winston";
 import {
   insertInitialData,
@@ -11,17 +12,17 @@ const rows = cities.length;
  or pass it into functions?
  */
 
-export async function init(dbPromise) {
-  winston.info("Initialising DB.");
+export async function initDB(dbPromise) {
   try {
     const db = await dbPromise;
     await createDB(db);
-    const populated = await checkRecordsExists(db);
+    const tableExists = await checkRecordsExists(db);
 
-    if (!populated) {
+    if (!tableExists) {
+      winston.info("Table 'cities' created");
       return await insertRecords(db);
     } else {
-      winston.warn("Table already populated!");
+      winston.warn("Table 'cities' already existing and populated!");
     }
   } catch (err) {
     winston.error("init process error:", err);
@@ -29,27 +30,26 @@ export async function init(dbPromise) {
   }
 }
 
+//to do: rewrite using sql-template-strings sintax
+async function createDB(db) {
+  winston.info("Initialising DB.");
+  try {
+    const fields = getTableFields(tableHeaders);
+    const sqlFields = fields.map(kv => `${kv[0]} ${kv[1]}`).join();
+    const sql = `CREATE TABLE IF NOT EXISTS cities (id INTEGER PRIMARY KEY AUTOINCREMENT, ${sqlFields})`;
+    await db.run(sql);
+  } catch (err) {
+    throw { location: "createDB", err };
+  }
+}
+
 async function checkRecordsExists(db) {
-  winston.info("Checking if there are records in table...");
+  winston.info("Checking if table 'cities' exists...");
   try {
     const hits = await Promise.all([db.all(`SELECT * FROM cities`)]);
     return hits[0].length > 0 ? true : false;
   } catch (err) {
     throw { location: "checkRecordsExists", err };
-  }
-}
-
-async function createDB(db) {
-  winston.info("Creating database table.");
-  try {
-    const fields = getTableFields(tableHeaders);
-    const sqlFields = fields.map(kv => `${kv[0]} ${kv[1]}`).join();
-    const sql = `CREATE TABLE cities (id INTEGER PRIMARY KEY AUTOINCREMENT, ${sqlFields})`;
-    await db.run(sql);
-    winston.info("Created Database!");
-  } catch (err) {
-    winston.warn("Database table already exists!");
-    // throw { location: "createDB", err };
   }
 }
 
