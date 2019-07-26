@@ -1,4 +1,4 @@
-# gun-crime
+# brazil-cities
 project to show full-stack skillset
 
 first draft - estimated date of completion is August 2nd:
