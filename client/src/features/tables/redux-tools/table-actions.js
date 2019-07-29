@@ -19,27 +19,41 @@ export function getCitiesData(sortBy, sortOrder, pageNum, pageSize, filterStr) {
       pageSize,
       filterStr
     );
+
+    // console.log("action result", res);
+
     return dispatch({
       type: TABLE_ACTION_TYPES.GOT_ALL,
-      payload: { data: res.data.result }
+      payload: {
+        data: res.data.result,
+        sortBy,
+        sortOrder,
+        pageNum,
+        pageSize,
+        filterStr,
+        totalRows: res.data.totalRows.TotalRows
+      }
     });
   };
 }
 
 export function setPageNumber(sortBy, sortOrder, pageNum, pageSize, filterStr) {
   return async dispatch => {
-    dispatch({ type: TABLE_ACTION_TYPES.SET_PAGE, payload: { pageNum } });
-    const returnData = await getTableData(
+    dispatch({
+      type: TABLE_ACTION_TYPES.SET_PAGE,
+      payload: { pageNum }
+    });
+    const res = await getTableData(
       sortBy,
       sortOrder,
       pageNum,
       pageSize,
       filterStr
     );
-    const tableData = returnData.dataInPage;
+
     return dispatch({
       type: TABLE_ACTION_TYPES.SET_PAGE_OK,
-      payload: { tableData }
+      payload: { data: res.data.result }
     });
   };
 }
@@ -56,17 +70,17 @@ export function setRowsPerPage(
       type: TABLE_ACTION_TYPES.SET_PAGESIZE,
       payload: { pageSize }
     });
-    const returnData = await getTableData(
+    const res = await getTableData(
       sortBy,
       sortOrder,
       pageNum,
       pageSize,
       filterStr
     );
-    const tableData = returnData.dataInPage;
+
     return dispatch({
       type: TABLE_ACTION_TYPES.SET_PAGESIZE_OK,
-      payload: { tableData }
+      payload: { data: res.data.result }
     });
   };
 }

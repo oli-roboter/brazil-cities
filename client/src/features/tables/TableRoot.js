@@ -4,11 +4,12 @@ import Paper from "@material-ui/core/Paper";
 import CustomTableHead from "./TableHead";
 import TableMain from "./TableMain";
 import Paginator from "./Paginator";
+import "./tables.css";
 
 const TableRoot = () => {
   //to do -> add header with add city button and modal to insert new city
   return (
-    <div>
+    <div className="table-root">
       <h3>Brazilian Cities' Table</h3>
       <Paper>
         <Table>
@@ -16,7 +17,7 @@ const TableRoot = () => {
           <TableMain />
         </Table>
       </Paper>
-      {/* <Paginator /> */}
+      <Paginator />
     </div>
   );
 };

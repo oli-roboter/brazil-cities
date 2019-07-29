@@ -9,52 +9,59 @@ import TableCell from "@material-ui/core/TableCell";
 
 const mapStateToProps = state => {
   return {
-    currentPage: state.tableStore.currentPage,
+    pageNum: state.tableStore.pageNum,
     pageSize: state.tableStore.pageSize,
     sortBy: state.tableStore.sortBy,
-    sort: state.tableStore.sort,
-    filterDisplay: state.tableStore.filterDisplay
+    sortOrder: state.tableStore.sortOrder,
+    filterStr: state.tableStore.filterStr
   };
 };
 
 const CustomTableHead = props => {
-  const { filterDisplay, sort, sortBy, pageSize, currentPage } = props;
+  const { filterStr, sortOrder, sortBy, pageSize, pageNum } = props;
 
-  const setOrder = (sort, sortBy, property) => {
-    if (sort === undefined) {
+  const setOrder = (sortOrder, sortBy, property) => {
+    console.log("setOrder", sortOrder, sortBy, property);
+    if (sortOrder === undefined) {
       return "asc";
     } else {
-      return sortBy !== property ? sort : sort === "asc" ? "desc" : "asc";
+      return sortBy !== property
+        ? sortOrder
+        : sortOrder === "asc"
+        ? "desc"
+        : "asc";
     }
   };
 
   const sortHandler = property => event => {
-    const newOrder = setOrder(sort, sortBy, property);
-    props.getCitiesData(
-      filterDisplay,
-      currentPage,
-      pageSize,
-      property,
-      newOrder
-    );
+    const newOrder = setOrder(sortOrder, sortBy, property);
+    // console.log(newOrder, pageNum, pageSize, property);
+    props.getCitiesData(property, newOrder, pageNum, pageSize, filterStr);
   };
 
+  // console.log("render TableHead:", sortOrder, sortBy, pageNum);
   return (
     <TableHead>
       <TableRow>
-        <TableCell align="left">City</TableCell>
+        <TableCell align="left">
+          <TableSortLabel
+            active={sortBy === "CITY"}
+            direction={sortOrder}
+            onClick={sortHandler("CITY")}
+          >
+            City
+          </TableSortLabel>
+        </TableCell>
 
         <TableCell align="left">State</TableCell>
 
-        <TableCell align="center">Capital</TableCell>
-
         <TableCell
-          align="center"
-          sortDirection={sortBy === "ESTIMATED_POP" ? sort : false}
+          align="left"
+          sortDirection={sortBy === "ESTIMATED_POP" ? sortOrder : false}
         >
           <TableSortLabel
             active={sortBy === "ESTIMATED_POP"}
-            direction={sort}
+            direction={sortOrder}
             onClick={sortHandler("ESTIMATED_POP")}
           >
             Population
@@ -62,13 +69,12 @@ const CustomTableHead = props => {
         </TableCell>
 
         <TableCell
-          align="center"
-          style={{ width: 250 }}
-          sortDirection={sortBy === "AREA" ? sort : false}
+          align="left"
+          sortDirection={sortBy === "AREA" ? sortOrder : false}
         >
           <TableSortLabel
             active={sortBy === "AREA"}
-            direction={sort}
+            direction={sortOrder}
             onClick={sortHandler("AREA")}
           >
             {"Area KM \xB2"}
@@ -76,31 +82,34 @@ const CustomTableHead = props => {
         </TableCell>
 
         <TableCell
-          align="center"
-          style={{ width: 250 }}
-          sortDirection={sortBy === "GDP" ? sort : false}
+          align="left"
+          sortDirection={sortBy === "GDP" ? sortOrder : false}
         >
           <TableSortLabel
             active={sortBy === "GDP"}
-            direction={sort}
+            direction={sortOrder}
             onClick={sortHandler("GDP")}
           >
-            GDP in R$
+            GDP in R$ '000
           </TableSortLabel>
         </TableCell>
 
         <TableCell
-          align="center"
-          style={{ width: 250 }}
-          sortDirection={sortBy === "IDHM" ? sort : false}
+          align="left"
+          sortDirection={sortBy === "IDHM" ? sortOrder : false}
         >
-          HDI
+          <TableSortLabel
+            active={sortBy === "IDHM"}
+            direction={sortOrder}
+            onClick={sortHandler("IDHM")}
+          >
+            HDI
+          </TableSortLabel>
         </TableCell>
 
         <TableCell
-          align="center"
-          style={{ width: 250 }}
-          sortDirection={sortBy === "AREA" ? sort : false}
+          align="left"
+          sortDirection={sortBy === "AREA" ? sortOrder : false}
         >
           Rural/Urban
         </TableCell>

@@ -4,10 +4,10 @@ const defaultState = {
   pageSize: 10,
   totalRows: 0,
   gotData: false,
-  currentPage: 0,
+  pageNum: 0,
   pageData: [],
-  orderBy: null,
-  sortOrder: null,
+  sortBy: null,
+  sortOrder: "asc",
   filterDisplay: ""
 };
 
@@ -24,40 +24,41 @@ export default function tableReducer(state = defaultState, action) {
         ...state,
         gotData: true,
         pageData: action.payload.data,
-        orderBy: action.payload.orderBy,
-        sort: action.payload.sort,
+        sortBy: action.payload.sortBy,
+        sortOrder: action.payload.sortOrder,
         totalRows: action.payload.totalRows,
-        filterDisplay: action.payload.str,
-        currentPage: action.payload.currentPage
+        filterStr: action.payload.filterStr,
+        pageNum: action.payload.pageNum,
+        pageSize: action.payload.pageSize
       };
 
-    // case TABLE_ACTION_TYPES.SET_PAGE:
-    //   return {
-    //     ...state,
-    //     gotWorkers: false,
-    //     currentPage: action.payload.page
-    //   };
+    case TABLE_ACTION_TYPES.SET_PAGE:
+      return {
+        ...state,
+        gotWorkers: false,
+        pageNum: action.payload.pageNum
+      };
 
-    // case TABLE_ACTION_TYPES.SET_PAGE_OK:
-    //   return {
-    //     ...state,
-    //     gotWorkers: true,
-    //     pageData: action.payload.tableData
-    //   };
+    case TABLE_ACTION_TYPES.SET_PAGE_OK:
+      return {
+        ...state,
+        gotWorkers: true,
+        pageData: action.payload.data
+      };
 
-    // case TABLE_ACTION_TYPES.SET_PAGESIZE:
-    //   return {
-    //     ...state,
-    //     gotWorkers: false,
-    //     pageSize: action.payload.rowsPerPage
-    //   };
+    case TABLE_ACTION_TYPES.SET_PAGESIZE:
+      return {
+        ...state,
+        gotWorkers: false,
+        pageSize: action.payload.pageSize
+      };
 
-    // case TABLE_ACTION_TYPES.SET_PAGESIZE_OK:
-    //   return {
-    //     ...state,
-    //     gotWorkers: true,
-    //     pageData: action.payload.tableData
-    //   };
+    case TABLE_ACTION_TYPES.SET_PAGESIZE_OK:
+      return {
+        ...state,
+        gotWorkers: true,
+        pageData: action.payload.data
+      };
 
     default:
       return state;

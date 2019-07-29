@@ -6,6 +6,7 @@ import NumberFormat from "react-number-format";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
+import "./tables.css";
 
 const mapStateToProps = state => {
   return {
@@ -18,10 +19,9 @@ const TableMain = props => {
   const { gotData, pageData } = props;
 
   useEffect(() => {
-    props.getCitiesData("CITY", "ASC", 1, 10, "RJ");
+    props.getCitiesData("CITY", "asc", 1, 10, "");
   }, []);
 
-  console.log(pageData[0]);
   return (
     <TableBody>
       <Fragment>
@@ -34,16 +34,17 @@ const TableMain = props => {
         )}
         {gotData &&
           pageData.map((city, idx) => (
-            <TableRow key={idx}>
+            <TableRow
+              key={idx}
+              className={city.CAPITAL === 1 ? "table-row" : ""}
+            >
               <TableCell component="th" scope="row">
                 {city.CITY}
               </TableCell>
               <TableCell component="th" scope="row">
                 {city.STATE}
               </TableCell>
-              <TableCell component="th" scope="row">
-                {city.CAPITAL}
-              </TableCell>
+
               <TableCell component="th" scope="row">
                 <NumberFormat
                   value={city.ESTIMATED_POP}
@@ -61,7 +62,7 @@ const TableMain = props => {
 
               <TableCell component="th" scope="row">
                 <NumberFormat
-                  value={Math.round(city.GDP)}
+                  value={Math.round(city.GDP / 1000)}
                   thousandSeparator={true}
                   displayType={"text"}
                 />
@@ -69,7 +70,7 @@ const TableMain = props => {
 
               <TableCell component="th" scope="row">
                 <NumberFormat
-                  value={city.IDHM.toFixed(3)}
+                  value={city.IDHM !== "" ? city.IDHM.toFixed(3) : null}
                   thousandSeparator={true}
                   displayType={"text"}
                 />

@@ -6,47 +6,33 @@ import TablePagination from "@material-ui/core/TablePagination";
 
 const mapStateToProps = state => {
   return {
-    pageData: state.tableStore.tableData,
-    currentPage: state.tableStore.currentPage,
+    pageNum: state.tableStore.pageNum,
     pageSize: state.tableStore.pageSize,
     totalRows: state.tableStore.totalRows,
-    orderBy: state.tableStore.orderBy,
-    order: state.tableStore.order,
-    filterDisplay: state.tableStore.filterDisplay
+    sortBy: state.tableStore.sortBy,
+    sortOrder: state.tableStore.sortOrder,
+    filterStr: state.tableStore.filterStr
   };
 };
 
 const Paginator = props => {
-  const {
-    filterDisplay,
-    totalRows,
-    currentPage,
-    pageSize,
-    order,
-    orderBy
-  } = props;
+  const { filterStr, totalRows, pageNum, pageSize, sortOrder, sortBy } = props;
 
   const handleChangePage = (e, newPage) => {
-    props.setPageNumber(filterDisplay, newPage, pageSize, orderBy, order);
+    props.setPageNumber(sortBy, sortOrder, newPage, pageSize, filterStr);
   };
 
   const handleChangeRowsPerPage = e => {
-    props.setRowsPerPage(
-      filterDisplay,
-      currentPage,
-      e.target.value,
-      orderBy,
-      order
-    );
+    props.setRowsPerPage(sortBy, sortOrder, pageNum, e.target.value, filterStr);
   };
 
   return (
     <TablePagination
-      rowsPerPageOptions={[5, 10, 25]}
+      rowsPerPageOptions={[5, 10, 15, 20, 25]}
       component="div"
       count={totalRows}
       rowsPerPage={pageSize}
-      page={currentPage}
+      page={pageNum}
       backIconButtonProps={{
         "aria-label": "Previous Page"
       }}

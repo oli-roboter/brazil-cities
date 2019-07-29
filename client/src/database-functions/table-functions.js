@@ -6,14 +6,14 @@ export async function getTableData(
   sortOrder,
   pageNum,
   pageSize,
-  filterBy
+  filterStr
 ) {
   const queryData = JSON.stringify({
     sortBy,
     sortOrder,
     pageNum,
     pageSize,
-    filterBy
+    filterStr
   });
 
   const url = `${API_ROUTES.CITIES}table/${queryData}`;
