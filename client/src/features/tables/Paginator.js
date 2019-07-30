@@ -16,6 +16,8 @@ const mapStateToProps = state => {
 };
 
 const Paginator = props => {
+  console.log();
+
   const { filterStr, totalRows, pageNum, pageSize, sortOrder, sortBy } = props;
 
   const handleChangePage = (e, newPage) => {
@@ -23,13 +25,24 @@ const Paginator = props => {
   };
 
   const handleChangeRowsPerPage = e => {
-    //todo -> when changing page size, make sure the page num is not above what it is phisically possible
-    props.setRowsPerPage(sortBy, sortOrder, pageNum, e.target.value, filterStr);
+    props.setRowsPerPage(
+      sortBy,
+      sortOrder,
+      adjustPage(totalRows, e.target.value, pageNum),
+      e.target.value,
+      filterStr
+    );
   };
+
+  function adjustPage(totalRows, pageSize, currentPageNum) {
+    return currentPageNum > Math.ceil(totalRows / pageSize)
+      ? Math.floor(totalRows / pageSize)
+      : currentPageNum;
+  }
 
   return (
     <TablePagination
-      rowsPerPageOptions={[5, 10, 15, 20, 25, 30]}
+      rowsPerPageOptions={[5, 10, 15, 20, 25, 30, 100, 200]}
       component="div"
       count={totalRows}
       rowsPerPage={pageSize}

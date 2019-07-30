@@ -1,14 +1,15 @@
 export const getTableData = (filter, sortBy, pageNum, pageSize) => {
+  console.log(pageNum);
   const fields =
     "CITY, STATE, CAPITAL, AREA, ESTIMATED_POP, GDP, IDHM, RURAL_URBAN";
-  const startPage = pageSize * (pageNum - 1);
+  const pageStart = pageSize * pageNum;
 
   return `
   SELECT ${fields}
   FROM cities
   ${filter}
   ${sortBy}
-  LIMIT ${startPage}, ${pageSize}
+  LIMIT ${pageStart}, ${pageSize}
   `;
 };
 

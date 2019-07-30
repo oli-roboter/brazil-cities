@@ -66,7 +66,7 @@ export function setRowsPerPage(
   return async dispatch => {
     dispatch({
       type: TABLE_ACTION_TYPES.SET_PAGESIZE,
-      payload: { pageSize }
+      payload: { pageSize, pageNum }
     });
     const res = await getTableData(
       sortBy,

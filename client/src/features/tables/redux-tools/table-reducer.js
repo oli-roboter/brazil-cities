@@ -50,7 +50,8 @@ export default function tableReducer(state = defaultState, action) {
       return {
         ...state,
         gotWorkers: false,
-        pageSize: action.payload.pageSize
+        pageSize: action.payload.pageSize,
+        pageNum: action.payload.pageNum
       };
 
     case TABLE_ACTION_TYPES.SET_PAGESIZE_OK:

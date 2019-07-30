@@ -23,7 +23,7 @@ const SearchBar = props => {
     props.getCitiesData(sortBy, sortOrder, 0, pageSize, e.target.value);
 
   return (
-    <Paper className="search" elevation="1">
+    <Paper className="search" elevation={1}>
       <InputBase
         className="input"
         placeholder="Search City"
