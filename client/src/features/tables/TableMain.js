@@ -13,11 +13,9 @@ const mapStateToProps = state => {
   };
 };
 
-const TableMain = props => {
-  const { gotData, pageData } = props;
-
+const TableMain = ({ gotData, pageData, getCitiesData }) => {
   useEffect(() => {
-    props.getCitiesData("", "asc", 1, 10, "");
+    getCitiesData("", "asc", 1, 10, "");
   }, []);
 
   return (

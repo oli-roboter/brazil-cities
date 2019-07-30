@@ -16,11 +16,9 @@ const mapStateToProps = state => {
   };
 };
 
-const SearchBar = props => {
-  const { sortOrder, sortBy, pageSize } = props;
-
+const SearchBar = ({ sortOrder, sortBy, pageSize, getCitiesData }) => {
   const handleChange = e =>
-    props.getCitiesData(sortBy, sortOrder, 0, pageSize, e.target.value);
+    getCitiesData(sortBy, sortOrder, 0, pageSize, e.target.value);
 
   return (
     <Paper className="search" elevation={1}>

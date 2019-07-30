@@ -15,17 +15,22 @@ const mapStateToProps = state => {
   };
 };
 
-const Paginator = props => {
-  console.log();
-
-  const { filterStr, totalRows, pageNum, pageSize, sortOrder, sortBy } = props;
-
+const Paginator = ({
+  filterStr,
+  totalRows,
+  pageNum,
+  pageSize,
+  sortOrder,
+  sortBy,
+  setPageNumber,
+  setRowsPerPage
+}) => {
   const handleChangePage = (e, newPage) => {
-    props.setPageNumber(sortBy, sortOrder, newPage, pageSize, filterStr);
+    setPageNumber(sortBy, sortOrder, newPage, pageSize, filterStr);
   };
 
   const handleChangeRowsPerPage = e => {
-    props.setRowsPerPage(
+    setRowsPerPage(
       sortBy,
       sortOrder,
       adjustPage(totalRows, e.target.value, pageNum),

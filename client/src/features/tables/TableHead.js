@@ -19,9 +19,14 @@ const mapStateToProps = state => {
   };
 };
 
-const CustomTableHead = props => {
-  const { filterStr, sortOrder, sortBy, pageSize, pageNum } = props;
-
+const CustomTableHead = ({
+  filterStr,
+  sortOrder,
+  sortBy,
+  pageSize,
+  pageNum,
+  getCitiesData
+}) => {
   const setOrder = (sortOrder, sortBy, property) => {
     console.log("setOrder", sortOrder);
     if (sortOrder === "") {
@@ -37,7 +42,7 @@ const CustomTableHead = props => {
 
   const sortHandler = property => event => {
     const newOrder = setOrder(sortOrder, sortBy, property);
-    props.getCitiesData(property, newOrder, pageNum, pageSize, filterStr);
+    getCitiesData(property, newOrder, pageNum, pageSize, filterStr);
   };
 
   return (
