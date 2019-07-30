@@ -47,7 +47,7 @@ const Paginator = ({
 
   return (
     <TablePagination
-      rowsPerPageOptions={[5, 10, 15, 20, 25, 30, 100, 200]}
+      rowsPerPageOptions={[5, 10, 15, 20, 25, 30]}
       component="div"
       count={totalRows}
       rowsPerPage={pageSize}
