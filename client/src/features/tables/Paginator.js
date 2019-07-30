@@ -23,12 +23,13 @@ const Paginator = props => {
   };
 
   const handleChangeRowsPerPage = e => {
+    //todo -> when changing page size, make sure the page num is not above what it is phisically possible
     props.setRowsPerPage(sortBy, sortOrder, pageNum, e.target.value, filterStr);
   };
 
   return (
     <TablePagination
-      rowsPerPageOptions={[5, 10, 15, 20, 25]}
+      rowsPerPageOptions={[5, 10, 15, 20, 25, 30]}
       component="div"
       count={totalRows}
       rowsPerPage={pageSize}
