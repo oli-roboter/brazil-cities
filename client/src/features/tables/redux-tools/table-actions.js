@@ -20,8 +20,6 @@ export function getCitiesData(sortBy, sortOrder, pageNum, pageSize, filterStr) {
       filterStr
     );
 
-    // console.log("action result", res);
-
     return dispatch({
       type: TABLE_ACTION_TYPES.GOT_ALL,
       payload: {

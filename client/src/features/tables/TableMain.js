@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCitiesData } from "./redux-tools/table-actions";
 import NumberFormat from "react-number-format";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import TableBody from "@material-ui/core/TableBody";
+import { TableCell, TableRow, TableBody } from "@material-ui/core";
 import "./tables.css";
 
 const mapStateToProps = state => {
@@ -19,7 +17,7 @@ const TableMain = props => {
   const { gotData, pageData } = props;
 
   useEffect(() => {
-    props.getCitiesData("CITY", "asc", 1, 10, "");
+    props.getCitiesData("", "asc", 1, 10, "");
   }, []);
 
   return (
@@ -62,7 +60,7 @@ const TableMain = props => {
 
               <TableCell component="th" scope="row">
                 <NumberFormat
-                  value={Math.round(city.GDP / 1000)}
+                  value={Math.round(city.GDP)}
                   thousandSeparator={true}
                   displayType={"text"}
                 />

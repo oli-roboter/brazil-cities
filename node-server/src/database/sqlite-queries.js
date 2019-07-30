@@ -1,6 +1,4 @@
-import { tableHeadersArr } from "../database/table-headers";
-
-export const getTableData = (filter, sortBy, sortOrder, pageNum, pageSize) => {
+export const getTableData = (filter, sortBy, pageNum, pageSize) => {
   const fields =
     "CITY, STATE, CAPITAL, AREA, ESTIMATED_POP, GDP, IDHM, RURAL_URBAN";
   const startPage = pageSize * (pageNum - 1);
@@ -9,7 +7,7 @@ export const getTableData = (filter, sortBy, sortOrder, pageNum, pageSize) => {
   SELECT ${fields}
   FROM cities
   ${filter}
-  ORDER BY ${sortBy} ${sortOrder.toUpperCase()}
+  ${sortBy}
   LIMIT ${startPage}, ${pageSize}
   `;
 };

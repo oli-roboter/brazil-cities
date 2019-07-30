@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import winston from "winston";
 import { getTableData, getTotalRows } from "../database/sqlite-queries";
+import { withFilterAndSort } from "../database/aux-functions";
 
 router.get("/:querydata", async (req, res) => {
   winston.info("gettin cities data");
@@ -9,12 +10,15 @@ router.get("/:querydata", async (req, res) => {
   const queryData = JSON.parse(params.querydata);
   const { sortBy, sortOrder, pageNum, pageSize, filterStr } = queryData;
   const db = await dbPromise;
-  const filter = filterStr === "" ? "" : `WHERE STATE='${filterStr}'`;
 
   try {
     const [result, totalRows] = await Promise.all([
-      db.all(getTableData(filter, sortBy, sortOrder, pageNum, pageSize)),
-      db.get(getTotalRows(filter))
+      db.all(
+        withFilterAndSort(filterStr)(sortBy, sortOrder)(pageNum, pageSize)(
+          getTableData
+        )
+      ),
+      db.get(withFilterAndSort(filterStr)()()(getTotalRows))
     ]);
     res.json({
       message: "success",

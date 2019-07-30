@@ -2,6 +2,58 @@
   margin: 10px
 }
 
+.table-root header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px 0 10px
+}
+
 .table-row{
   background: lightGrey
+}
+
+.city{
+  width: 250px;
+}
+
+.state{ 
+  width: 50px;
+}
+
+.population{
+  width: 100px
+}
+
+.area{
+  width: 75px
+}
+
+.GDP{
+  width: 100px
+}
+
+.IDH{
+  width: 50px
+}
+
+.urb{
+  width: 200px
+}
+
+.search{
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  width: 400
+}
+
+.search .icon{
+ padding: 10px
+}
+
+.search .input {
+  margin-left: 8px;
+  flex: 1;
 }

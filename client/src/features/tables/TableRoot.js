@@ -1,16 +1,19 @@
 import React from "react";
-import Table from "@material-ui/core/Table";
-import Paper from "@material-ui/core/Paper";
+import { Table, Paper } from "@material-ui/core";
 import CustomTableHead from "./TableHead";
 import TableMain from "./TableMain";
 import Paginator from "./Paginator";
+import SearchBar from "./SearchBar";
 import "./tables.css";
 
 const TableRoot = () => {
   //to do -> add header with add city button and modal to insert new city
   return (
     <div className="table-root">
-      <h3>Brazilian Cities' Table</h3>
+      <header>
+        <h3>Brazilian Cities' Table</h3>
+        <SearchBar />
+      </header>
       <Paper>
         <Table>
           <CustomTableHead />

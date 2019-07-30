@@ -2,10 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCitiesData } from "./redux-tools/table-actions";
-import TableHead from "@material-ui/core/TableHead";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
+import {
+  TableHead,
+  TableSortLabel,
+  TableRow,
+  TableCell
+} from "@material-ui/core";
 
 const mapStateToProps = state => {
   return {
@@ -21,8 +23,8 @@ const CustomTableHead = props => {
   const { filterStr, sortOrder, sortBy, pageSize, pageNum } = props;
 
   const setOrder = (sortOrder, sortBy, property) => {
-    console.log("setOrder", sortOrder, sortBy, property);
-    if (sortOrder === undefined) {
+    console.log("setOrder", sortOrder);
+    if (sortOrder === "") {
       return "asc";
     } else {
       return sortBy !== property
@@ -35,27 +37,28 @@ const CustomTableHead = props => {
 
   const sortHandler = property => event => {
     const newOrder = setOrder(sortOrder, sortBy, property);
-    // console.log(newOrder, pageNum, pageSize, property);
     props.getCitiesData(property, newOrder, pageNum, pageSize, filterStr);
   };
 
-  // console.log("render TableHead:", sortOrder, sortBy, pageNum);
   return (
     <TableHead>
       <TableRow>
-        <TableCell align="left">
+        <TableCell align="left" className="city">
           <TableSortLabel
             active={sortBy === "CITY"}
             direction={sortOrder}
             onClick={sortHandler("CITY")}
           >
-            City
+            CITY
           </TableSortLabel>
         </TableCell>
 
-        <TableCell align="left">State</TableCell>
+        <TableCell align="left" className="state">
+          STATE
+        </TableCell>
 
         <TableCell
+          className="population"
           align="left"
           sortDirection={sortBy === "ESTIMATED_POP" ? sortOrder : false}
         >
@@ -64,11 +67,12 @@ const CustomTableHead = props => {
             direction={sortOrder}
             onClick={sortHandler("ESTIMATED_POP")}
           >
-            Population
+            POPULATION
           </TableSortLabel>
         </TableCell>
 
         <TableCell
+          className="area"
           align="left"
           sortDirection={sortBy === "AREA" ? sortOrder : false}
         >
@@ -77,11 +81,12 @@ const CustomTableHead = props => {
             direction={sortOrder}
             onClick={sortHandler("AREA")}
           >
-            {"Area KM \xB2"}
+            {"AREA KM \xB2"}
           </TableSortLabel>
         </TableCell>
 
         <TableCell
+          className="GDP"
           align="left"
           sortDirection={sortBy === "GDP" ? sortOrder : false}
         >
@@ -95,6 +100,7 @@ const CustomTableHead = props => {
         </TableCell>
 
         <TableCell
+          className="IDH"
           align="left"
           sortDirection={sortBy === "IDHM" ? sortOrder : false}
         >
@@ -108,10 +114,11 @@ const CustomTableHead = props => {
         </TableCell>
 
         <TableCell
+          className="urb"
           align="left"
           sortDirection={sortBy === "AREA" ? sortOrder : false}
         >
-          Rural/Urban
+          RURAL/URBAN
         </TableCell>
       </TableRow>
     </TableHead>
