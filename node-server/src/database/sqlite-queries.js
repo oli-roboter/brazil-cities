@@ -1,5 +1,4 @@
 export const getTableData = (filter, sortBy, pageNum, pageSize) => {
-  console.log(pageNum);
   const fields =
     "CITY, STATE, CAPITAL, AREA, ESTIMATED_POP, GDP, IDHM, RURAL_URBAN";
   const pageStart = pageSize * pageNum;

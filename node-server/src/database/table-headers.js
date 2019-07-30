@@ -93,5 +93,3 @@ export const tableHeaders = {
 };
 
 export const tableHeadersArr = Object.keys(tableHeaders);
-
-

@@ -63,6 +63,8 @@ async function insertRecords(db) {
   try {
     for (let i = 0; i < rows; i++) {
       const insertArr = headerKeys.map(k => cities[i][`${k}`]);
+      const area = insertArr[24].replace(",", "");
+      insertArr[24] = area;
       await db.run(insert, insertArr);
       if (i !== 0 && i % 1000 === 0) {
         winston.info(`${i} rows inserted`);
