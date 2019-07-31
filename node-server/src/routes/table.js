@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
 import winston from "winston";
-import { getTableData, getTotalRows } from "../database/sqlite-queries";
-import { withFilterAndSort } from "../database/aux-functions";
+import { getTableData, getTotalRows } from "../SQL/table-queries";
+import { withFilterAndSort } from "../utils/helper-functions";
 
 router.get("/:querydata", async (req, res) => {
   winston.info("gettin cities data");

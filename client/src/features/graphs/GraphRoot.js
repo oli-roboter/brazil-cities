@@ -1,5 +1,6 @@
 import React from "react";
+import GVAperState from "./GVAperState";
 
-const GraphRoot = () => <div>GraphRoot</div>;
+const GraphRoot = () => <GVAperState />;
 
 export default GraphRoot;
