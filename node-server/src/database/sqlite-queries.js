@@ -19,3 +19,12 @@ export const getTotalRows = filter => {
     ${filter}
   `;
 };
+
+export const getDistinctCities = filter => {
+  return `
+    SELECT DISTINCT
+      CITY 
+    FROM cities
+    ASC
+  `;
+};
