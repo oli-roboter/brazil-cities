@@ -25,6 +25,7 @@ export const getDistinctCities = filter => {
     SELECT DISTINCT
       CITY 
     FROM cities
+    ${filter}
     ASC
   `;
 };
