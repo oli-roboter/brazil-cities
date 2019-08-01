@@ -6,11 +6,10 @@ export const GRAPH_ACTION_TYPES = {
 };
 
 export function getGVAData() {
-  console.log("action dispatched");
+  // console.log("action dispatched");
   return async dispatch => {
     dispatch({ type: GRAPH_ACTION_TYPES.GET_ALL });
     const res = await getGraphData();
-    console.log("result from action:", res);
     return dispatch({
       type: GRAPH_ACTION_TYPES.GOT_ALL,
       payload: {
