@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import winston from "winston";
 import { getTableData, getTotalRows } from "../SQL/table-queries";
-import { withFilterAndSort } from "../utils/helper-functions";
+import { withFilterAndSort, withFilter } from "../utils/helper-functions";
 
 router.get("/:querydata", async (req, res) => {
   winston.info("gettin cities data");
@@ -14,11 +14,12 @@ router.get("/:querydata", async (req, res) => {
   try {
     const [result, totalRows] = await Promise.all([
       db.all(
-        withFilterAndSort(filterStr)(sortBy, sortOrder)(pageNum, pageSize)(
-          getTableData
+        withFilterAndSort(getTableData)(filterStr)(sortBy, sortOrder)(
+          pageNum,
+          pageSize
         )
       ),
-      db.get(withFilterAndSort(filterStr)()()(getTotalRows))
+      db.get(withFilter(getTotalRows)(filterStr)())
     ]);
     res.json({
       message: "success",
