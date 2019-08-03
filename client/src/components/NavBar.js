@@ -57,6 +57,16 @@ const NavBar = () => {
               Graphs
             </Link>
           </Button>
+          <Button color="inherit">
+            <Link className={classes.link} to="/bla">
+              404
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link className={classes.link} to="/400500">
+              400 & 500
+            </Link>
+          </Button>
         </nav>
       </Toolbar>
     </AppBar>

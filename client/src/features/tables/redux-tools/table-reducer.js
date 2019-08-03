@@ -8,7 +8,9 @@ const defaultState = {
   pageData: [],
   sortBy: null,
   sortOrder: "asc",
-  filterDisplay: ""
+  filterDisplay: "",
+  error: false,
+  errorMsg: ""
 };
 
 export default function tableReducer(state = defaultState, action) {
@@ -22,6 +24,8 @@ export default function tableReducer(state = defaultState, action) {
     case TABLE_ACTION_TYPES.GOT_ALL:
       return {
         ...state,
+        error: false,
+        errorMsg: "",
         gotData: true,
         pageData: action.payload.data,
         sortBy: action.payload.sortBy,
@@ -59,6 +63,13 @@ export default function tableReducer(state = defaultState, action) {
         ...state,
         gotWorkers: true,
         pageData: action.payload.data
+      };
+
+    case TABLE_ACTION_TYPES.SET_ERROR:
+      return {
+        ...state,
+        error: true,
+        errorMsg: action.payload.errorMsg.message
       };
 
     default:

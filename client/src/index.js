@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./assets/css/variables.css";
+import "./assets/css/index.css";
+import "./assets/css/flex.css";
 import App from "./App";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";

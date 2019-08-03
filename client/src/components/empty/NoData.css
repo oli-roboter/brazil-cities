@@ -1,0 +1,23 @@
+.NoData {
+  display: grid;
+  grid-template-rows: repeat(4, min-content);
+  grid-gap: var(--margin-m);
+  max-width: var(--width-section-xs);
+  height: fit-content;
+  margin: auto;
+  padding: var(--margin-xl) 10px;
+}
+
+.NoData > i {
+  font-size: 3em;
+  opacity: 0.5;
+}
+
+.NoData > h2 {
+  text-align: center;
+  opacity: 0.7;
+}
+
+.NoData > p {
+  text-align: center;
+}
