@@ -4,8 +4,9 @@ import { Router } from "@reach/router";
 import NavBar from "./components/NavBar";
 import TablePage from "./features/pages/TablePage";
 import GraphPage from "./features/pages/GraphPage";
-import Landing from "./features/page/Landing";
+import Landing from "./features/pages/Landing";
 import NotFound from "./features/pages/404/NotFound";
+import ErrorPage from "./features/pages/ErrorPage";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const Main = () => (
   <Router>
     <TablePage path="/tables" />
     <GraphPage path="/graphs" />
+    <ErrorPage path="/400500" />
     <NotFound default />
   </Router>
 );

@@ -24,6 +24,7 @@ export async function getTableData(
       }
     });
   } catch (err) {
-    console.error(`${err.message}! ${err.response.data.err}`);
+    console.error(`${err.message}!`);
+    return err;
   }
 }

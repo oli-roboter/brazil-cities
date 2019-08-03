@@ -1,0 +1,5 @@
+.Spinner {
+  height: var(--height-btn-s);
+  width: 100%;
+  margin: auto;
+}
