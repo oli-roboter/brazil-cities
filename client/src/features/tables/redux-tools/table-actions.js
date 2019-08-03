@@ -6,7 +6,8 @@ export const TABLE_ACTION_TYPES = {
   SET_PAGE: "CITIES/SET_PAGE",
   SET_PAGE_OK: "CITIES/SET_PAGE_OK",
   SET_PAGESIZE: "CITIES/SET_PAGESIZE",
-  SET_PAGESIZE_OK: "CITIES/SET_PAGESIZE_OK"
+  SET_PAGESIZE_OK: "CITIES/SET_PAGESIZE_OK",
+  SET_ERROR: "CITIES/SET_ERROR"
 };
 
 export function getCitiesData(sortBy, sortOrder, pageNum, pageSize, filterStr) {
@@ -20,18 +21,27 @@ export function getCitiesData(sortBy, sortOrder, pageNum, pageSize, filterStr) {
       filterStr
     );
 
-    return dispatch({
-      type: TABLE_ACTION_TYPES.GOT_ALL,
-      payload: {
-        data: res.data.result,
-        sortBy,
-        sortOrder,
-        pageNum,
-        pageSize,
-        filterStr,
-        totalRows: res.data.totalRows.TotalRows
-      }
-    });
+    try {
+      return dispatch({
+        type: TABLE_ACTION_TYPES.GOT_ALL,
+        payload: {
+          data: res.data.result,
+          sortBy,
+          sortOrder,
+          pageNum,
+          pageSize,
+          filterStr,
+          totalRows: res.data.totalRows.TotalRows
+        }
+      });
+    } catch (error) {
+      return dispatch({
+        type: TABLE_ACTION_TYPES.SET_ERROR,
+        payload: {
+          errorMsg: res
+        }
+      });
+    }
   };
 }
 

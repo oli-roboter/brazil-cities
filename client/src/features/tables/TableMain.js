@@ -9,11 +9,12 @@ import "./tables.css";
 const mapStateToProps = state => {
   return {
     gotData: state.tableStore.gotData,
-    pageData: state.tableStore.pageData
+    pageData: state.tableStore.pageData,
+    error: state.tableStore.error
   };
 };
 
-const TableMain = ({ gotData, pageData, getCitiesData }) => {
+const TableMain = ({ gotData, pageData, error, getCitiesData }) => {
   useEffect(() => {
     getCitiesData("", "asc", 1, 10, "");
   }, []);
@@ -28,6 +29,7 @@ const TableMain = ({ gotData, pageData, getCitiesData }) => {
             </TableCell>
           </TableRow>
         )}
+
         {gotData &&
           pageData.map((city, idx) => (
             <TableRow

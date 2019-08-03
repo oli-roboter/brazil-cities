@@ -20,6 +20,11 @@ const useStyles = makeStyles(theme => ({
   title: {
     marginLeft: theme.spacing(2)
   },
+  titleLink: {
+    margin: 0,
+    color: "white",
+    textDecoration: "none"
+  },
   link: {
     margin: 10,
     color: "white",
@@ -37,17 +42,29 @@ const NavBar = () => {
     >
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" className={classes.title}>
-          Yobota Exercise
+          <Link className={classes.titleLink} to="/">
+            Demo Project
+          </Link>
         </Typography>
         <nav className={classes.nav}>
           <Button color="inherit">
-            <Link className={classes.link} to="tables">
+            <Link className={classes.link} to="/tables">
               Tables
             </Link>
           </Button>
           <Button color="inherit">
-            <Link className={classes.link} to="graphs">
+            <Link className={classes.link} to="/graphs">
               Graphs
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link className={classes.link} to="/bla">
+              404
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link className={classes.link} to="/400500">
+              400 & 500
             </Link>
           </Button>
         </nav>
