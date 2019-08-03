@@ -1,5 +1,6 @@
 import React from "react";
+import GVAperState from "../../features/graphs/GVAperState";
 
-const GraphPage = () => <div>GraphPage</div>;
+const GraphPage = () => <GVAperState />;
 
 export default GraphPage;

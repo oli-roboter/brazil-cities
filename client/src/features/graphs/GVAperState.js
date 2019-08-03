@@ -1,30 +1,31 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import NumberFormat from "react-number-format";
 import { getGVAData } from "./redux-tools/graph-actions";
 import { ResponsiveBar } from "@nivo/bar";
+import LoadError from "../../components/LoadError";
 
 const mapStateToProps = state => {
   return {
     gotData: state.graphStore.gotData,
-    data: state.graphStore.data
+    data: state.graphStore.data,
+    error: state.graphStore.error,
+    errorMsg: state.graphStore.errorMsg
   };
 };
 
-function GVAperState({ gotData, data, getGVAData }) {
+function GVAperState({ gotData, data, getGVAData, error, errorMsg }) {
   useEffect(() => {
     getGVAData();
   }, []);
 
-  // const keys = gotData ? data.map(d => d.STATE) : [];
-  // console.log(keys);
-  console.log(data);
   return (
     <div>
-      {!gotData ? (
-        <p>Nothing to show</p>
-      ) : (
+      {!gotData && !error && <p>Loading...</p>}
+
+      {error && <LoadError errorMsg={errorMsg} />}
+
+      {!error && gotData && (
         <div style={{ height: "600px", width: "1000px", margin: "100px" }}>
           {/* <pre>{JSON.stringify(data.result, null, 2)}</pre> */}
           <ResponsiveBar

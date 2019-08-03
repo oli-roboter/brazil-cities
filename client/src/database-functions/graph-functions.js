@@ -8,5 +8,6 @@ export async function getGraphData() {
     return await axios.get(url);
   } catch (err) {
     console.error(`${err.message}! ${err.response.data.err}`);
+    return err;
   }
 }

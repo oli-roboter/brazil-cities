@@ -1,7 +1,7 @@
 export const getGVAperState = () => {
   // const fields =
   //   "GVA_AGROPEC GVA_INDUSTRY GVA_SERVICES GVA_PUBLIC GVA_TOTAL";
-  console.log("ENTROU NA GRAPH QUERY");
+
   return `
     SELECT 
       STATE,

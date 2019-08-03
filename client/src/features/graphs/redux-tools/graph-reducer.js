@@ -3,7 +3,9 @@ import { GRAPH_ACTION_TYPES } from "./graph-actions";
 const defaultState = {
   gotData: false,
   data: [],
-  filterArr: ""
+  filterArr: "",
+  error: false,
+  errorMsg: ""
 };
 
 export default function graphReducer(state = defaultState, action) {
@@ -18,7 +20,16 @@ export default function graphReducer(state = defaultState, action) {
       return {
         ...state,
         gotData: true,
+        error: false,
+        errorMsg: false,
         data: action.payload.data
+      };
+
+    case GRAPH_ACTION_TYPES.SET_ERROR:
+      return {
+        ...state,
+        error: true,
+        errorMsg: action.payload.errorMsg.message
       };
 
     default:
