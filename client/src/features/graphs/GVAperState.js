@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 
 function GVAperState({ gotData, data, getGVAData, error, errorMsg }) {
   useEffect(() => {
-    getGVAData();
+    getGVAData(["GVA_AGROPEC", "GVA_INDUSTRY"]);
   }, []);
 
   return (
@@ -27,7 +27,7 @@ function GVAperState({ gotData, data, getGVAData, error, errorMsg }) {
 
       {!error && gotData && (
         <div style={{ height: "600px", width: "1000px", margin: "100px" }}>
-          {/* <pre>{JSON.stringify(data.result, null, 2)}</pre> */}
+          {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
           <ResponsiveBar
             data={data}
             keys={["farming", "industry", "public", "services"]}

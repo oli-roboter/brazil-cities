@@ -6,10 +6,10 @@ export const GRAPH_ACTION_TYPES = {
   SET_ERROR: "GRAPH/SET_ERROR"
 };
 
-export function getGVAData() {
+export function getGVAData(fieldsArr) {
   return async dispatch => {
     dispatch({ type: GRAPH_ACTION_TYPES.GET_ALL });
-    const res = await getGraphData();
+    const res = await getGraphData(fieldsArr);
 
     try {
       return dispatch({

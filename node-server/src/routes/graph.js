@@ -3,14 +3,14 @@ const router = express.Router();
 import winston from "winston";
 import { getGVAperState } from "../SQL/graph-queries";
 
-//to do -> add graph routes
-router.get("/", async (req, res) => {
+router.get("/:querydata", async (req, res) => {
   winston.info("gettin graph data");
-  const { dbPromise } = req;
+  const { dbPromise, params } = req;
   const db = await dbPromise;
+  const fields = params.querydata;
 
   try {
-    const [result] = await Promise.all([db.all(getGVAperState())]);
+    const [result] = await Promise.all([db.all(getGVAperState(fields))]);
     res.json({
       message: "success",
       result

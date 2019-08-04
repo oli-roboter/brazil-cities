@@ -1,20 +1,45 @@
-export const getGVAperState = () => {
-  // const fields =
-  //   "GVA_AGROPEC GVA_INDUSTRY GVA_SERVICES GVA_PUBLIC GVA_TOTAL";
+export const getGVAperState = fields => {
+  const fieldsConverter = {
+    GVA_AGROPEC: ["SUM(GVA_AGROPEC)/SUM(IBGE_RES_POP) AS farming", "farming"],
+    GVA_INDUSTRY: [
+      "SUM(GVA_INDUSTRY)/SUM(IBGE_RES_POP) AS industry",
+      "industry"
+    ],
+    GVA_SERVICES: [
+      "SUM(GVA_SERVICES)/SUM(IBGE_RES_POP) AS services",
+      "services"
+    ],
+    GVA_PUBLIC: ["SUM(GVA_PUBLIC)/SUM(IBGE_RES_POP) AS public", "public"]
+  };
+
+  const fieldsArr = fields.split(",");
+  const selectSQL = fieldsArr.map(f => fieldsConverter[f][0]).join();
+  const orderSQL = fieldsArr.map(f => fieldsConverter[f][1]).join("+");
 
   return `
-    SELECT 
-      STATE,
-      SUM(GVA_AGROPEC/1000) AS farming,
-      SUM(GVA_INDUSTRY/1000) AS industry,
-      SUM(GVA_SERVICES/1000) AS services,
-      SUM(GVA_PUBLIC/1000) AS public
-    FROM cities
-    GROUP BY 
-      STATE
-    ORDER BY industry DESC
+  SELECT
+  STATE,
+  ${selectSQL}
+  FROM cities
+  GROUP BY
+  STATE
+  ORDER BY (${orderSQL}) DESC
   `;
 };
 
-// SUM(GVA_TOTAL) AS total,
-// SUM(GVA_AGROPEC + GVA_INDUSTRY + GVA_SERVICES + GVA_PUBLIC) as sumOfGVA
+/*
+SELECT 
+cities.STATE,
+      SUM(cities.GVA_AGROPEC)/total2.totalGVA AS farming,
+SUM(cities.GVA_INDUSTRY)/SUM(cities.IBGE_RES_POP) AS industry
+FROM 
+(
+  SELECT 
+    SUM(GVA_AGROPEC + GVA_INDUSTRY) AS totalGVA
+  FROM cities
+) AS total2,  
+cities
+GROUP BY 
+cities.STATE
+ORDER BY (industry+farming) DESC
+*/

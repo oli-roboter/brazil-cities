@@ -3,7 +3,7 @@ import { GRAPH_ACTION_TYPES } from "./graph-actions";
 const defaultState = {
   gotData: false,
   data: [],
-  filterArr: "",
+  fields: "",
   error: false,
   errorMsg: ""
 };
