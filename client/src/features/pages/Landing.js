@@ -52,8 +52,8 @@ const Landing = () => (
                 <li>
                   font sizes for different elements and homogeneity across app
                 </li>
-                <li>colourss and appearance of components</li>
-                <li>graph colourss when interacting should not change</li>
+                <li>colours and appearance of components</li>
+                <li>graph colours when interacting should not change</li>
               </ul>
               <li>Develop dashboard graphs and layout</li>
               <li>Create form for adding and editing cities</li>
