@@ -19,8 +19,9 @@ const Landing = () => (
             </p>
             <p>
               Idea is to build a data visualisation tool using dataset with
-              economic and populational data from Brazilian cities. The final
-              version should contain a dashboard with interactive graphs
+              economic, geographic and population data from Brazilian cities.
+              The final version should contain a dashboard with interactive
+              graphs
             </p>
             <p>Tech Stack Front End (for now)</p>
             <ul>
@@ -36,7 +37,7 @@ const Landing = () => (
             </ul>
             <p>
               PLEASE NOTE: this is not a final version, still lots to be
-              impoved!
+              improved!
             </p>
           </article>
         </section>
@@ -46,13 +47,13 @@ const Landing = () => (
             <ul>
               <li>Format App with implemented CSS structure</li>
               <ul>
-                <li>Implement common theme accross app</li>
+                <li>Implement common theme across app</li>
                 <li>paddings and margins</li>
                 <li>
-                  font sizes for different elements and homogeneity accross app
+                  font sizes for different elements and homogeneity across app
                 </li>
-                <li>colors and appearance of components</li>
-                <li>graph colors when interacting should not change</li>
+                <li>colourss and appearance of components</li>
+                <li>graph colourss when interacting should not change</li>
               </ul>
               <li>Develop dashboard graphs and layout</li>
               <li>Create form for adding and editing cities</li>
