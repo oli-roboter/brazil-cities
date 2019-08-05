@@ -4,7 +4,8 @@
 
 .table-container header{
   margin-left: var(--margin-xs);
-  margin-bottom: var(--margin-m)
+  margin-bottom: var(--margin-m);
+  height: var(--height-header)
 }
 
 .table-row{

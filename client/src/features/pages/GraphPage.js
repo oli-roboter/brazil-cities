@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import GVAperState from "../../features/graphs/GVAperState";
 import FieldSelector from "../../features/graphs/FieldSelector";
 import LoadError from "../../components/LoadError";
+import "../graphs/Graphs.css";
 
 const mapStateToProps = state => {
   return {
@@ -13,8 +14,13 @@ const mapStateToProps = state => {
 };
 
 const GraphPage = ({ error, errorMsg }) => (
-  <div>
+  <div className="graph-container">
+    <header className="f__r-jc--sb">
+      <h3>Gross Added Value per Capita (R$)</h3>
+    </header>
+
     {error && <LoadError errorMsg={errorMsg} />}
+
     {!error && (
       <div className="f__c-both--cen">
         <FieldSelector />

@@ -1,3 +1,13 @@
+.graph-container{
+  margin: var(--margin-m)
+}
+
+.graph-container header{
+  margin-left: var(--margin-xs);
+  margin-bottom: var(--margin-m);
+  height: var(--height-header)
+}
+
 .checkbox-container{
   margin-top: var(--margin-l)
 }

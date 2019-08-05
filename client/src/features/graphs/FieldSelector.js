@@ -35,7 +35,7 @@ function FieldSelector({ fields, setFields }) {
                 checked={GVA_INDUSTRY}
                 onChange={handleChange("GVA_INDUSTRY")}
                 value="GVA_INDUSTRY"
-                color="primary"
+                color="default"
               />
             }
             label="Industry"
@@ -46,6 +46,7 @@ function FieldSelector({ fields, setFields }) {
                 checked={GVA_AGROPEC}
                 onChange={handleChange("GVA_AGROPEC")}
                 value="GVA_AGROPEC"
+                color="default"
               />
             }
             label="Farming"
@@ -56,6 +57,7 @@ function FieldSelector({ fields, setFields }) {
                 checked={GVA_PUBLIC}
                 onChange={handleChange("GVA_PUBLIC")}
                 value="GVA_PUBLIC"
+                color="default"
               />
             }
             label="Public"
@@ -66,6 +68,7 @@ function FieldSelector({ fields, setFields }) {
                 checked={GVA_SERVICES}
                 onChange={handleChange("GVA_SERVICES")}
                 value="GVA_SERVICES"
+                color="default"
               />
             }
             label="Services"

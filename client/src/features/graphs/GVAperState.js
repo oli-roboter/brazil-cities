@@ -84,7 +84,7 @@ function GVAperState({ gotData, data, getGVAData, fields }) {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "country",
+              legend: "State",
               legendPosition: "middle",
               legendOffset: 32
             }}
@@ -92,7 +92,7 @@ function GVAperState({ gotData, data, getGVAData, fields }) {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "food",
+              legend: "GVA per Capita",
               legendPosition: "middle",
               legendOffset: -40
             }}
