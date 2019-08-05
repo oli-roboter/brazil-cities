@@ -3,6 +3,12 @@ project to show full-stack skillset
 
 Project to showcase coding proficiency, organisation and structure using React and Nodejs
 
+INSTALLATION
+  - Download or clone repo and install dependencies for client and node-sever
+  - run npm start in 2 different terminals:
+    - /client
+    - /node-server
+
 DESCRIPTION OF PROJECT
 
 Idea is to build a data visualisation tool using dataset with economic, geographic and population data from Brazilian cities. The final version should contain a dashboard with interactive graphs
