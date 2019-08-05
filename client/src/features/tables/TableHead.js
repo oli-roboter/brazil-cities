@@ -48,8 +48,9 @@ const CustomTableHead = ({
   return (
     <TableHead>
       <TableRow>
-        <TableCell align="left" className="city">
+        <TableCell align="left">
           <TableSortLabel
+            className="city table-title"
             active={sortBy === "CITY"}
             direction={sortOrder}
             onClick={sortHandler("CITY")}
@@ -58,16 +59,16 @@ const CustomTableHead = ({
           </TableSortLabel>
         </TableCell>
 
-        <TableCell align="left" className="state">
+        <TableCell align="left" className="state table-title">
           STATE
         </TableCell>
 
         <TableCell
-          className="population"
           align="left"
           sortDirection={sortBy === "ESTIMATED_POP" ? sortOrder : false}
         >
           <TableSortLabel
+            className="population table-title"
             active={sortBy === "ESTIMATED_POP"}
             direction={sortOrder}
             onClick={sortHandler("ESTIMATED_POP")}
@@ -77,11 +78,11 @@ const CustomTableHead = ({
         </TableCell>
 
         <TableCell
-          className="area"
           align="left"
           sortDirection={sortBy === "AREA" ? sortOrder : false}
         >
           <TableSortLabel
+            className="area table-title"
             active={sortBy === "AREA"}
             direction={sortOrder}
             onClick={sortHandler("AREA")}
@@ -91,11 +92,11 @@ const CustomTableHead = ({
         </TableCell>
 
         <TableCell
-          className="GDP"
           align="left"
           sortDirection={sortBy === "GDP" ? sortOrder : false}
         >
           <TableSortLabel
+            className="GDP table-title"
             active={sortBy === "GDP"}
             direction={sortOrder}
             onClick={sortHandler("GDP")}
@@ -105,11 +106,11 @@ const CustomTableHead = ({
         </TableCell>
 
         <TableCell
-          className="IDH"
           align="left"
           sortDirection={sortBy === "IDHM" ? sortOrder : false}
         >
           <TableSortLabel
+            className="IDH table-title"
             active={sortBy === "IDHM"}
             direction={sortOrder}
             onClick={sortHandler("IDHM")}
@@ -118,11 +119,7 @@ const CustomTableHead = ({
           </TableSortLabel>
         </TableCell>
 
-        <TableCell
-          className="urb"
-          align="left"
-          sortDirection={sortBy === "AREA" ? sortOrder : false}
-        >
+        <TableCell className="urb table-title" align="left">
           RURAL/URBAN
         </TableCell>
       </TableRow>

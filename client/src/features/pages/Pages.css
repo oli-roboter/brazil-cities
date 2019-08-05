@@ -1,0 +1,30 @@
+.page-container{
+  margin: var(--margin-m)
+}
+
+.page-container header{
+  padding: 10px
+}
+
+.main-contaier{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: var(--margin-xl);
+  grid-gap:  var(--margin-m);
+}
+
+li{
+  text-align: left;
+  margin: var(--margin-s)
+}
+
+
+article{
+  margin: var(--margin-m);
+  text-align: left
+}
+
+p{
+  margin: var(--margin-s);
+  font-size: var(--font-size-l)
+}

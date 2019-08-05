@@ -23,7 +23,9 @@
   --hsl-assessor: 184, 100%, 35%; /*#00A7B3*/
   --hsl-admin: 276, 37%, 26%; /*#472A5B*/
 
-  --font-size: 16px;
+  --font-size-l: 16px;
+  --font-size-m: 14px;
+  --font-size-s: 12px;
   --height-btn-xs: 32px;
   --height-btn-s: 36px;
   --height-btn-m: 48px;

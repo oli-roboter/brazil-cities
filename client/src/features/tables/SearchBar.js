@@ -5,7 +5,6 @@ import { getCitiesData } from "./redux-tools/table-actions";
 import Paper from "@material-ui/core/Paper";
 import { InputBase, IconButton } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import "./tables.css";
 
 const mapStateToProps = state => {
   return {

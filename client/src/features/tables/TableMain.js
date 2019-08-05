@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { getCitiesData } from "./redux-tools/table-actions";
 import NumberFormat from "react-number-format";
 import { TableCell, TableRow, TableBody } from "@material-ui/core";
-import "./tables.css";
+import "./Tables.css";
 
 const mapStateToProps = state => {
   return {
@@ -36,21 +36,21 @@ const TableMain = ({ gotData, pageData, error, getCitiesData }) => {
               key={idx}
               className={city.CAPITAL === 1 ? "table-row" : ""}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className="city">
                 {city.CITY}
               </TableCell>
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className="state">
                 {city.STATE}
               </TableCell>
 
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className="population">
                 <NumberFormat
                   value={city.ESTIMATED_POP}
                   thousandSeparator={true}
                   displayType={"text"}
                 />
               </TableCell>
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className="area">
                 <NumberFormat
                   value={Math.round(city.AREA)}
                   thousandSeparator={true}
@@ -58,7 +58,7 @@ const TableMain = ({ gotData, pageData, error, getCitiesData }) => {
                 />
               </TableCell>
 
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className="GDP">
                 <NumberFormat
                   value={Math.round(city.GDP)}
                   thousandSeparator={true}
@@ -66,7 +66,7 @@ const TableMain = ({ gotData, pageData, error, getCitiesData }) => {
                 />
               </TableCell>
 
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className="IDH">
                 <NumberFormat
                   value={city.IDHM !== "" ? city.IDHM.toFixed(3) : null}
                   thousandSeparator={true}
@@ -74,7 +74,7 @@ const TableMain = ({ gotData, pageData, error, getCitiesData }) => {
                 />
               </TableCell>
 
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className="urb">
                 {city.RURAL_URBAN}
               </TableCell>
             </TableRow>

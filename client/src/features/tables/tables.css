@@ -1,17 +1,18 @@
-.table-root{
-  margin: 10px
+.table-container{
+  margin: var(--margin-m)
 }
 
-.table-root header{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 10px
+.table-container header{
+  margin-left: var(--margin-xs);
+  margin-bottom: var(--margin-m)
 }
 
 .table-row{
   background: lightGrey
+}
+
+.table-title{
+  font-size: var(--font-size-s) !important
 }
 
 .city{

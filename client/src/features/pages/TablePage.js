@@ -6,7 +6,7 @@ import TableMain from "../tables/TableMain";
 import Paginator from "../tables/Paginator";
 import SearchBar from "../tables/SearchBar";
 import LoadError from "../../components/LoadError";
-import "../tables/tables.css";
+import "../tables/Tables.css";
 
 const mapStateToProps = state => {
   return {
@@ -17,8 +17,8 @@ const mapStateToProps = state => {
 
 const TablePage = ({ error, errorMsg }) => {
   return (
-    <div className="table-root">
-      <header>
+    <div className="table-container">
+      <header className="f__r-jc--sb">
         <h3>Brazilian Cities' Table</h3>
         <SearchBar />
       </header>
