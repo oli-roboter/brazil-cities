@@ -4,6 +4,7 @@ project to show full-stack skillset
 Project to showcase coding proficiency, organisation and structure using React and Nodejs
 
 DESCRIPTION OF PROJECT
+
 Idea is to build a data visualisation tool using dataset with economic, geographic and population data from Brazilian cities. The final version should contain a dashboard with interactive graphs
 
 Tech Stack Front End (for now)
