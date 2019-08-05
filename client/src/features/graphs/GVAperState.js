@@ -3,31 +3,39 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getGVAData } from "./redux-tools/graph-actions";
 import { ResponsiveBar } from "@nivo/bar";
-import LoadError from "../../components/LoadError";
+import NoData from "../../components/empty/NoData";
 
 const mapStateToProps = state => {
   return {
     gotData: state.graphStore.gotData,
     data: state.graphStore.data,
-    error: state.graphStore.error,
-    errorMsg: state.graphStore.errorMsg
+    fields: state.graphStore.fields
   };
 };
 
-function GVAperState({ gotData, data, getGVAData, error, errorMsg }) {
+function GVAperState({ gotData, data, getGVAData, fields }) {
   useEffect(() => {
-    getGVAData(["GVA_AGROPEC", "GVA_INDUSTRY"]);
+    getGVAData(fields);
   }, []);
+
+  const empty = data.length > 0 ? false : true;
 
   return (
     <div>
-      {!gotData && !error && <p>Loading...</p>}
+      {!gotData && <p>Loading...</p>}
 
-      {error && <LoadError errorMsg={errorMsg} />}
+      {gotData && empty && (
+        <div style={{ height: "600px", width: "1000px", margin: "10px" }}>
+          <NoData
+            icon="fas fa-grin-beam-sweat"
+            title="No Data to Display"
+            text={"Select at least one option"}
+          />
+        </div>
+      )}
 
-      {!error && gotData && (
-        <div style={{ height: "600px", width: "1000px", margin: "100px" }}>
-          {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      {gotData && !empty && (
+        <div style={{ height: "600px", width: "1000px", margin: "10px" }}>
           <ResponsiveBar
             data={data}
             keys={["farming", "industry", "public", "services"]}

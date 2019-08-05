@@ -1,29 +1,36 @@
+import { makeSQLStringIfTrue } from "../utils/helper-functions";
+
 export const getGVAperState = fields => {
   const fieldsConverter = {
-    GVA_AGROPEC: ["SUM(GVA_AGROPEC)/SUM(IBGE_RES_POP) AS farming", "farming"],
-    GVA_INDUSTRY: [
-      "SUM(GVA_INDUSTRY)/SUM(IBGE_RES_POP) AS industry",
-      "industry"
-    ],
-    GVA_SERVICES: [
-      "SUM(GVA_SERVICES)/SUM(IBGE_RES_POP) AS services",
-      "services"
-    ],
-    GVA_PUBLIC: ["SUM(GVA_PUBLIC)/SUM(IBGE_RES_POP) AS public", "public"]
+    GVA_AGROPEC: {
+      select: "SUM(GVA_AGROPEC)/SUM(IBGE_RES_POP) AS farming",
+      order: "farming"
+    },
+    GVA_INDUSTRY: {
+      select: "SUM(GVA_INDUSTRY)/SUM(IBGE_RES_POP) AS industry",
+      order: "industry"
+    },
+    GVA_SERVICES: {
+      select: "SUM(GVA_SERVICES)/SUM(IBGE_RES_POP) AS services",
+      order: "services"
+    },
+    GVA_PUBLIC: {
+      select: "SUM(GVA_PUBLIC)/SUM(IBGE_RES_POP) AS public",
+      order: "public"
+    }
   };
 
-  const fieldsArr = fields.split(",");
-  const selectSQL = fieldsArr.map(f => fieldsConverter[f][0]).join();
-  const orderSQL = fieldsArr.map(f => fieldsConverter[f][1]).join("+");
+  const selectSQL = makeSQLStringIfTrue(fields, fieldsConverter, "select", ",");
+  const orderSQL = makeSQLStringIfTrue(fields, fieldsConverter, "order", "+");
 
   return `
-  SELECT
-  STATE,
-  ${selectSQL}
-  FROM cities
-  GROUP BY
-  STATE
-  ORDER BY (${orderSQL}) DESC
+    SELECT
+      STATE,
+      ${selectSQL}
+    FROM cities
+    GROUP BY
+      STATE
+    ORDER BY (${orderSQL}) DESC
   `;
 };
 
