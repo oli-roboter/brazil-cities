@@ -29,7 +29,7 @@ const Landing = () => (
               <li>Redux</li>
               <li>Material Design Components</li>
             </ul>
-            <p>Tech Stack Back End (for now</p>
+            <p>Tech Stack Back End (for now)</p>
             <ul>
               <li>Nodejs</li>
               <li>Express</li>
