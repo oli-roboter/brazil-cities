@@ -12,7 +12,7 @@ Tech Stack Front End (for now)
   - Redux
   - Material Design Components
   
-Tech Stack Back End (for now
+Tech Stack Back End (for now)
   - Nodejs
   - Express
   -SQLite Database
