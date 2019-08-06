@@ -6,7 +6,7 @@ html {
 }
 * {
   box-sizing: inherit;
-  font-family: "Quicksand", Helvetica, sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
   font-size: var(--font-size);
   color: var(--theme-font-pri);
 }
